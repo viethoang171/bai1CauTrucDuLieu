@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 #define maxn 10000
 int array[maxn], sumArray[maxn], sumResult, first, end;
 int main()
@@ -7,14 +9,17 @@ int main()
     printf("Nhap so phan tu: ");
     scanf("%d", &n);
     printf("\n Nhap cac phan tu: ");
+    srand(time(NULL));
     for (int i = 0; i < n; i++)
     {
-        scanf("%d", &array[i]);
+        array[i] = rand() % maxn - 5000;
+        printf("%d ", array[i]);
         if (i == 0)
             sumArray[i] = array[i];
         else
             sumArray[i] = sumArray[i - 1] + array[i];
     }
+    printf("\n");
     sumResult = array[0];
     for (int i = 0; i < n; i++)
         for (int j = i + 1; j < n; j++)
