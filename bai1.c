@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#define maxn 10000
-int array[maxn], sumArray[maxn], sumResult, first, end;
+#define maxn 100000
+int array[maxn], sumArray[maxn], first[maxn], end[maxn];
 int main()
 {
     int n; // so luong phan tu trong mang
@@ -17,33 +17,25 @@ int main()
         if (i == 0)
             sumArray[i] = array[i];
         else
-            sumArray[i] = sumArray[i - 1] + array[i];
-    }
-    printf("\n");
-    sumResult = array[0];
-    for (int i = 0; i < n; i++)
-        for (int j = i + 1; j < n; j++)
-            if (i == 0)
+        {
+            if (array[i] > sumArray[i - 1] + array[i])
             {
-                if (sumArray[j] > sumResult)
-                {
-                    first = i;
-                    end = j;
-                    sumResult = sumArray[j];
-                }
+                sumArray[i] = (sumArray[i - 1] > array[i]) ? sumArray[i - 1] : array[i];
+                first[i] = (sumArray[i - 1] > array[i]) ? first[i - 1] : i;
+                end[i] = (sumArray[i - 1] > array[i]) ? end[i - 1] : i;
             }
             else
             {
-                if (sumArray[j] - sumArray[i - 1] > sumResult)
-                {
-                    first = i;
-                    end = j;
-                    sumResult = sumArray[j] - sumArray[i - 1];
-                }
+                sumArray[i] = (sumArray[i - 1] > sumArray[i - 1] + array[i]) ? sumArray[i - 1] : sumArray[i - 1] + array[i];
+                first[i] = first[i - 1];
+                end[i] = (sumArray[i - 1] > sumArray[i - 1] + array[i]) ? end[i] : i;
             }
-    printf("Tong day con lon nhat la: %d\n", sumResult);
+        }
+    }
+    printf("\n");
+    printf("Tong day con lon nhat la: %d\n", sumArray[n - 1]);
     printf("Day con do la: ");
-    for (int i = first; i <= end; i++)
+    for (int i = first[n - 1]; i <= end[n - 1]; i++)
         printf("%d ", array[i]);
     return 0;
 }
