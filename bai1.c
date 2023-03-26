@@ -2,7 +2,8 @@
 #include <time.h>
 #include <stdlib.h>
 #define maxn 100000
-int array[maxn], sumArray[maxn], first[maxn], end[maxn];
+int array[maxn], first[maxn], end[maxn];
+long long sumArray[maxn];
 int main()
 {
     int n; // so luong phan tu trong mang
