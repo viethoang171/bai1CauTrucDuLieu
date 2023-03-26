@@ -6,6 +6,8 @@ int array[maxn], first, end;
 long long sum, sumMax;
 int main()
 {
+    clock_t start, endd;
+    start = clock();
     int n; // so luong phan tu trong mang
     printf("Nhap so phan tu: ");
     scanf("%d", &n);
@@ -18,14 +20,14 @@ int main()
     }
     sumMax = array[0];
     for (int i = 0; i < n; i++)
-        for (int j = i + 1; j < n; j++)
+        for (int j = i; j < n; j++)
         {
             sum = 0;
             for (int k = i; k <= j; k++)
                 sum += array[k];
             if (sum > sumMax)
             {
-                sum = sumMax;
+                sumMax = sum;
                 first = i;
                 end = j;
             }
@@ -35,5 +37,8 @@ int main()
     printf("Day con do la: ");
     for (int i = first; i <= end; i++)
         printf("%d ", array[i]);
+    endd = clock();
+    double cpuTimeUse = (double)(endd - start) / CLOCKS_PER_SEC;
+    printf("\nThoi gian chay la: %lf secs", cpuTimeUse);
     return 0;
 }

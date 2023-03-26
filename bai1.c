@@ -6,6 +6,8 @@ int array[maxn], first[maxn], end[maxn];
 long long sumArray[maxn];
 int main()
 {
+    clock_t start, endd;
+    start = clock();
     int n; // so luong phan tu trong mang
     printf("Nhap so phan tu: ");
     scanf("%d", &n);
@@ -38,5 +40,8 @@ int main()
     printf("Day con do la: ");
     for (int i = first[n - 1]; i <= end[n - 1]; i++)
         printf("%d ", array[i]);
+    endd = clock();
+    double cpuTimeUse = (double)(endd - start) / CLOCKS_PER_SEC;
+    printf("\nThoi gian chay la: %lf secs", cpuTimeUse);
     return 0;
 }
