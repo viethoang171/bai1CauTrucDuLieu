@@ -33,7 +33,7 @@ int main()
             }
         }
     printf("\n");
-    printf("Tong day con lon nhat la: %d\n", sumMax);
+    printf("Tong day con lon nhat la: %ld\n", sumMax);
     printf("Day con do la: ");
     for (int i = first; i <= end; i++)
         printf("%d ", array[i]);
